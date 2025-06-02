@@ -1,4 +1,4 @@
-import { getProductById } from "@/app/_productfetch/products";
+import { getAllProducts, getProductById } from "@/app/_productfetch/products";
 import { redirect } from "next/dist/server/api-utils";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -11,6 +11,16 @@ export async function generateMetadata({ params }) {
   return {
     title: product.title,
   };
+}
+
+export async function generateStaticParams() {
+  const products = await getAllProducts();
+  console.log(products);
+  const ids = products.map((prd) => {
+    return { id: prd.id.toString() };
+  });
+  console.log(ids);
+  return ids;
 }
 
 export default async function ProductDetails({ params }) {
