@@ -1,6 +1,4 @@
-/* eslint-disable @next/next/no-async-client-component */
 
-// CSR
 import Image from "next/image";
 import Link from "next/link";
 import React, { Suspense } from "react";
@@ -8,7 +6,7 @@ import React, { Suspense } from "react";
 export default async function Products() {
   const res = await fetch("https://fakestoreapi.com/products");
   const allProducts = await res.json();
-  console.log(allProducts);
+  
   return (
     <>
       <h1>Here is our Products</h1>
